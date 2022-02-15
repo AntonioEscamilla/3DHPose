@@ -30,7 +30,7 @@ from dataset import Preprocessing
 
 class Detector2D ( object ):
     #incepe mereu de la epoca 350
-    def __init__(self, test_model=os.path.join ( cfg.cur_dir, 'log/model_dump/res51/snapshot_350.ckpt' ), show_image=False):
+    def __init__(self, test_model=os.path.join ( cfg.cur_dir, 'log/model_dump/snapshot_350.ckpt' ), show_image=False):
         self.show_image = show_image
         self.tester = Tester ( Network (), cfg )
         self.tester.load_weights ( test_model )
