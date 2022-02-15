@@ -9,7 +9,7 @@ from datetime import datetime
 project_path = osp.abspath ( osp.join ( osp.dirname ( __file__ ), '..' ) )
 if project_path not in sys.path:
     sys.path.insert ( 0, project_path )
-CENTER_PATH = 'backend/CenterNet/src/lib'
+CENTER_PATH = '/content/3DHPose/backend/CenterNet/src/lib'
 sys.path.insert(0,CENTER_PATH)
 
 #from backend.light_head_rcnn.person_detector import PersonDetector
@@ -17,7 +17,7 @@ from backend.tf_cpn.Detector2D import Detector2D
 #from backend.ExtremeNet.dem_trial import PersonDetector
 from backend.CenterNet.src.lib.detectors.detector_factory import detector_factory
 from backend.CenterNet.src.lib.opts import opts
-MODEL_PATH = 'backend/CenterNet/models/ctdet_coco_dla_2x.pth'
+MODEL_PATH = '/content/3DHPose/backend/CenterNet/models/ctdet_coco_dla_2x.pth'
 TASK = 'ctdet'
 opt = opts().init('{} --load_model {}'.format(TASK,MODEL_PATH).split(' '))
 detector  = detector_factory[opt.task](opt)
