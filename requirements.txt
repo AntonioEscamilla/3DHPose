@@ -6,12 +6,10 @@ requests==2.21.0
 torch==1.0.1.post2
 torchvision==0.2.2
 prettytable==0.7.2
-numpy==1.16.2
 tqdm==4.19.9
 coloredlogs==10.0
 scipy==1.2.1
 setproctitle==1.1.10
-matplotlib==2.0.2
 visdom==0.1.8.8
 Cython==0.29.6
 Pillow==6.1
