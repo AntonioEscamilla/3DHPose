@@ -19,7 +19,7 @@ tensorboard
 progress
 h5py
 six
-tb-nightly==1.14.0
+tb-nightly==1.14
 future
 yacs
 gdown
