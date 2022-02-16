@@ -38,7 +38,7 @@ class MultiEstimator ( object ):
         #asta daca se foloseste OSNet
         self.extractor = FeatureExtractor(
             model_name='osnet_x1_0',
-            model_path='backend/reid/models/osnet_x1_0_market_256x128_amsgrad_ep150_stp60_lr0.0015_b64_fb10_softmax_labelsmooth_flip.pth',
+            model_path='/content/3DHPose/backend/reid/models/osnet_x1_0_market_256x128_amsgrad_ep150_stp60_lr0.0015_b64_fb10_softmax_labelsmooth_flip.pth',
             device='cuda'
         )
         self.cfg = cfg
