@@ -269,7 +269,7 @@ def show_panel(dataset, matched_list, info_list, sub_imgid2cam, img_id, affinity
     sns.heatmap ( W )
     ax.set_title ( 'Synthesize' )
 
-    fig = plot_multi_pose3d ( multi_pose3d )
+    fig = plot_multi_pose3d (multi_pose3d, false)
     fig.suptitle ( f'Image: {img_id}' )
     fig.show ()
     plt.tight_layout ()
@@ -397,8 +397,8 @@ def show_panel_mem(dataset, matched_list, info_list, sub_imgid2cam, img_id, affi
         fig = plot_multi_pose3d ( multi_pose3d )
         fig.suptitle ( f'Image: {img_id}' )
         fig.show ()
-    # plt.savefig ( f'./result/Shelf_panel/{plt_id}.png' )
-    # plt.close()
+    plt.savefig ( f'/content/3DHPose/result/panel/{plt_id}.png' )
+    plt.close()
     plt.show ()
 
 
@@ -617,8 +617,8 @@ def plotPaperRows(dataset, matched_list, info_list, sub_imgid2cam, img_id, affin
         fig = plotPaper3d ( multi_pose3d, all_color )
         # fig.suptitle ( f'Image: {img_id}' )
         fig.show ()
-    # plt.savefig ( f'./result/Shelf_panel/{plt_id}.png' )
-    # plt.close()
+    plt.savefig ( f'/content/3DHPose/result/paper_panel/{plt_id}.png' )
+    plt.close()
     plt.show ()
 
 
