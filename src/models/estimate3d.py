@@ -165,6 +165,7 @@ class MultiEstimator ( object ):
         matched_list = [[] for i in range ( bin_match.shape[1] )]
         for sub_imgid, row in enumerate ( bin_match ):
             if row.sum () != 0:
+                row = row.double()
                 pid = row.argmax ()
                 #se adauga id-ul imaginii la pid-ul imaginii care are suma randului diferita de 0, deci practic exista un match
                 matched_list[pid].append ( sub_imgid )
@@ -183,6 +184,7 @@ class MultiEstimator ( object ):
             matched_list = [[] for i in range ( bin_match.shape[1] )]
             for sub_imgid, row in enumerate ( bin_match ):
                 if row.sum () != 0:
+                    row = row.double()
                     pid = row.argmax ()
                     matched_list[pid].append ( sub_imgid )
             matched_list = [np.array ( i ) for i in matched_list]
