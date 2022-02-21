@@ -19,7 +19,7 @@ class ModelConfig ( object ):
 
     shelf_range = range ( 300, 600 )
     campus_range = [i for i in range ( 350, 471 )] + [i for i in range ( 650, 751 )]
-    hexagonos_range = [i for i in range ( 350, 471 )] + [i for i in range ( 650, 751 )]
+    hexagonos_range = [i for i in range ( 650, 750 )]
     vga_frame_rate = 25
     ultimatum1_range = list ( range ( 17337, 17370 ) ) + list ( range ( 21560, 21660 ) )
 
