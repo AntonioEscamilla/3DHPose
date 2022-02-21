@@ -12,12 +12,14 @@ class ModelConfig ( object ):
     datasets_dir = os.path.join ( root_dir, 'datasets' )
     shelf_path = os.path.join ( datasets_dir, 'Shelf' )
     campus_path = os.path.join ( datasets_dir, 'CampusSeq1' )
+    hexagonos_path = os.path.join ( datasets_dir, 'Hexagonos' )
     ultimatum1_path = os.path.join ( datasets_dir, '160422_ultimatum1', 'vgaImgs' )
 
 
 
     shelf_range = range ( 300, 600 )
     campus_range = [i for i in range ( 350, 471 )] + [i for i in range ( 650, 751 )]
+    hexagonos_range = [i for i in range ( 350, 471 )] + [i for i in range ( 650, 751 )]
     vga_frame_rate = 25
     ultimatum1_range = list ( range ( 17337, 17370 ) ) + list ( range ( 21560, 21660 ) )
 
