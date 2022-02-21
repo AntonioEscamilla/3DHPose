@@ -76,16 +76,23 @@ if __name__ == '__main__':
             dataset_path = model_cfg.campus_path
             test_range = [i for i in range ( 350, 471 )] + [i for i in range ( 650, 751 )]
             gt_path = dataset_path
+            
+        elif dataset_name == 'Hexagonos':
+            dataset_path = model_cfg.hexagonos_path
+            test_range = [i for i in range ( 350, 471 )] + [i for i in range ( 650, 751 )]
+            gt_path = dataset_path
 
         elif dataset_name == 'Panoptic':
             dataset_path = model_cfg.panoptic_ultimatum_path
             test_range = range ( 4500, 4900 )
             gt_path = osp.join ( dataset_path, '..' )
+            
         elif dataset_name == 'ultimatum1':
             dataset_path = model_cfg.ultimatum1_path
             test_range = list ( range ( 10 * 25, 35 * 25, 10 ) ) + list ( range ( 60 * 25, 110 * 25, 10 ) ) + list (
                 range ( 550 * 25, 600 * 25, 10 ) ) + list ( range ( 725 * 25, 770 * 25, 10 ) )
             # For 0min10s ~ 0min35s, 1min ~ 1min50s, 9min15s ~ 10min, 12min05s ~ 12min50s
+            
         elif dataset_name == 'HD_ultimatum1':
             dataset_path = model_cfg.HD_ultimatum1_path
             test_range = model_cfg.HD_ultimatum1_range
