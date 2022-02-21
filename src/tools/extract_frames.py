@@ -20,6 +20,9 @@ def extract_frames(video_path, frames_dir, overwrite=False, start=-1, end=-1, ev
 
     assert os.path.exists(video_path)  # assert the video file exists
 
+    # make directory to save frames
+    os.makedirs(frames_dir, exist_ok=True)
+
     capture = cv2.VideoCapture(video_path)  # open the video using OpenCV
 
     if start < 0:  # if start isn't specified lets assume 0
@@ -46,7 +49,8 @@ def extract_frames(video_path, frames_dir, overwrite=False, start=-1, end=-1, ev
 
         if frame % every == 0:  # if this is a frame we want to write out based on the 'every' argument
             while_safety = 0  # reset the safety count
-            save_path = os.path.join(frames_dir, video_filename, "{:010d}.jpg".format(frame))  # create the save path
+            video_filename = os.path.splitext(video_filename)[0]
+            save_path = os.path.join(frames_dir, "{}-{:05d}.jpg".format(video_filename, frame))  # create the save path
             if not os.path.exists(save_path) or overwrite:  # if it doesn't exist or we want to overwrite anyways
                 cv2.imwrite(save_path, image)  # save the extracted image
                 saved_count += 1  # increment our counter by one
