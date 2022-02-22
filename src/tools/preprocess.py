@@ -79,7 +79,7 @@ if __name__ == '__main__':
             
         elif dataset_name == 'Hexagonos':
             dataset_path = model_cfg.hexagonos_path
-            test_range = [i for i in range ( 650, 680 )]
+            test_range = [i for i in range ( 650, 665 )]
             gt_path = dataset_path
 
         elif dataset_name == 'Panoptic':
