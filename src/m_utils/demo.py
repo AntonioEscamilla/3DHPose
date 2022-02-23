@@ -64,7 +64,7 @@ if __name__ == '__main__':
     parser.add_argument ( '-d', nargs='+', dest='datasets', required=True,
                           choices=['Shelf', 'Campus', 'ultimatum1', 'Hexagonos'] )
     parser.add_argument ( '-dumped', nargs='+', dest='dumped_dir', default=None )
-    parser.add_argument("-range", nargs="+", dest='range', default=[0, 100])
+    parser.add_argument("-range", nargs="+", dest='range', type=int)
     args = parser.parse_args ()
 
     test_model = MultiEstimator ( cfg=model_cfg )
@@ -85,7 +85,7 @@ if __name__ == '__main__':
         elif dataset_name == 'Hexagonos':
             dataset_path = model_cfg.hexagonos_path
             # you can change the test_rang to visualize different images (0~1999)
-            test_range = [i for i in range(args.range[0], args.range[1], 1)]
+            test_range = [i for i in range(args.range[0], args.range[1], 2)]
             gt_path = dataset_path
 
         else:
@@ -105,11 +105,10 @@ if __name__ == '__main__':
 
             test_dataset = BaseDataset ( dataset_path, test_range )
 
-        test_loader = DataLoader ( test_dataset, batch_size=1, pin_memory=True, num_workers=6, shuffle=False )
-        pose_in_range = export ( test_model, test_loader, is_info_dicts=bool ( args.dumped_dir ), show=True )
-        with open ( osp.join ( model_cfg.root_dir, 'result',
-                               time.strftime ( str ( model_cfg.testing_on ) + "_%Y_%m_%d_%H_%M",
-                                               time.localtime ( time.time () ) ) + '.pkl' ), 'wb' ) as f:
+        test_loader = DataLoader(test_dataset, batch_size=1, pin_memory=True, num_workers=6, shuffle=False )
+        pose_in_range = export(test_model, test_loader, is_info_dicts=bool(args.dumped_dir), show=False )
+        test_range_str = '_' + str(args.range[0]) + '_' + str(args.range[1])
+        with open (osp.join(model_cfg.root_dir, 'result', model_cfg.testing_on + test_range_str + '.pkl' ), 'wb' ) as f:
             pickle.dump ( pose_in_range, f )
 
 
