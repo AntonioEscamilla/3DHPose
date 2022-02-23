@@ -62,7 +62,7 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser ()
     parser.add_argument ( '-d', nargs='+', dest='datasets', required=True,
-                          choices=['Shelf', 'Campus', 'ultimatum1'] )
+                          choices=['Shelf', 'Campus', 'ultimatum1', 'Hexagonos'] )
     parser.add_argument ( '-dumped', nargs='+', dest='dumped_dir', default=None )
     args = parser.parse_args ()
 
@@ -79,6 +79,12 @@ if __name__ == '__main__':
             dataset_path = model_cfg.campus_path
             # you can change the test_rang to visualize different images (0~1999)
             test_range = [i for i in range ( 605, 1000, 5 )]
+            gt_path = dataset_path
+
+        elif dataset_name == 'Hexagonos':
+            dataset_path = model_cfg.hexagonos_path
+            # you can change the test_rang to visualize different images (0~1999)
+            test_range = [i for i in range(0, 1000, 1)]
             gt_path = dataset_path
 
         else:
