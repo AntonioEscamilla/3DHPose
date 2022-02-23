@@ -51,8 +51,7 @@ class MultiEstimator ( object ):
         info_dict = self._infer_single2d ( imgs )
         #info_dict e un dictionar cu key-uri pe camere, fiecare key avand un dictionar format din mai multe dictionare, asemanator cu un JSON
         #asa cum zice si la descriere, mem dataset pune datasetul 2D in memorie
-        self.dataset = MemDataset ( info_dict=info_dict, camera_parameter=camera_parameter,
-                                    template_name=template_name )
+        self.dataset = MemDataset (info_dict=info_dict, camera_parameter=camera_parameter, template_name=template_name )
         #acuma incepe distractia
         return self._estimate3d ( 0, show=show, plt_id=plt_id )
 
@@ -194,6 +193,8 @@ class MultiEstimator ( object ):
             plotPaperRows ( self.dataset, matched_list, info_list, sub_imgid2cam, img_id, affinity_mat,
                             geo_affinity_mat, W, plt_id, multi_pose3d )
 
+        del self.dataset
+        gc.collect()
         return multi_pose3d
 
     def _hybrid_kernel(self, matched_list, pose_mat, sub_imgid2cam, img_id):
