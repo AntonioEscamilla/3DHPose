@@ -64,6 +64,7 @@ if __name__ == '__main__':
     parser.add_argument ( '-d', nargs='+', dest='datasets', required=True,
                           choices=['Shelf', 'Campus', 'ultimatum1', 'Hexagonos'] )
     parser.add_argument ( '-dumped', nargs='+', dest='dumped_dir', default=None )
+    parser.add_argument("-range", nargs="+", dest='range', default=[0, 100])
     args = parser.parse_args ()
 
     test_model = MultiEstimator ( cfg=model_cfg )
@@ -84,7 +85,7 @@ if __name__ == '__main__':
         elif dataset_name == 'Hexagonos':
             dataset_path = model_cfg.hexagonos_path
             # you can change the test_rang to visualize different images (0~1999)
-            test_range = [i for i in range(0, 1000, 1)]
+            test_range = [i for i in range(args.range[0], args.range[1], 1)]
             gt_path = dataset_path
 
         else:
