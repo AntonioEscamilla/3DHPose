@@ -28,6 +28,7 @@ from src.models.matchSVT import matchSVT
 from src.m_utils.visualize import show_panel_mem, plotPaperRows
 # from src.models import pictorial
 from src.m_lib import pictorial
+import gc
 
 
 class MultiEstimator ( object ):
