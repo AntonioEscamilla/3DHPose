@@ -77,6 +77,7 @@ class MultiEstimator ( object ):
                 # NOTE: bbox is (x, y) (W, H) format where x and y is up-left point.
                 this_info_dict[img_id][person_id]['bbox'] = result['bbox']
                 bb = np.array ( result['bbox'], dtype=int )
+                bb[bb<0] = 0
                 #practic creeaza persoane din rezultate unde sunt bounding boxes
                 cropped_img = img[bb[1]:bb[1] + bb[3], bb[0]:bb[0] + bb[2]]
                 # numpy format of crop idx is changed to json
