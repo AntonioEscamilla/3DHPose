@@ -8,8 +8,9 @@ from functools import partial
 from .cpn_config import cfg
 from tfflat.base import ModelDesc, Trainer
 from tfflat.utils import mem_info
+import torch
 
-from nets.basemodel import resnet101, resnet_arg_scope, resnet_v1
+from nets.basemodel import resnet50,resnet101, resnet_arg_scope, resnet_v1
 resnet_arg_scope = partial(resnet_arg_scope, bn_trainable=cfg.bn_train)
 
 def create_global_net(blocks, is_training, trainable=True):
@@ -49,7 +50,7 @@ def create_global_net(blocks, is_training, trainable=True):
         global_outs.append(tf.image.resize_bilinear(out, (cfg.output_shape[0], cfg.output_shape[1])))
     global_fms.reverse()
     global_outs.reverse()
-    return global_fms, global_outs
+    return global_fms, global_outs,out
 
 def create_refine_net(blocks, is_training, trainable=True):
     initializer = tf.contrib.layers.xavier_initializer()
@@ -106,10 +107,12 @@ class Network(ModelDesc):
         else:
             image = tf.placeholder(tf.float32, shape=[None, *cfg.data_shape, 3])
             self.set_inputs(image)
-
-        resnet_fms = resnet101(image, is_train, bn_trainable=True)
-        global_fms, global_outs = create_global_net(resnet_fms, is_train)
-        refine_out = create_refine_net(global_fms, is_train)
+        #asta daca folosesc resnet50
+        #resnet_fms = resnet50(image, is_train, bn_trainable=True)
+        #asta daca folosesc resnet 101
+        resnet_fms = resnet50(image, is_train, bn_trainable=True)
+        global_fms, global_outs, out = create_global_net(resnet_fms, is_train)
+        #refine_out = create_refine_net(global_fms, is_train)
 
         # make loss
         if is_train:
@@ -137,7 +140,7 @@ class Network(ModelDesc):
             self.add_tower_summary('loss', total_loss)
             self.set_loss(total_loss)
         else:
-            self.set_outputs(refine_out)
+            self.set_outputs(out)
 
 if __name__ == '__main__':
     def parse_args():
@@ -162,3 +165,4 @@ if __name__ == '__main__':
     cfg.set_args(args.gpu_ids, args.continue_train)
     trainer = Trainer(Network(), cfg)
     trainer.train()
+
