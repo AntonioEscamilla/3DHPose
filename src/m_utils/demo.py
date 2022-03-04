@@ -85,7 +85,7 @@ if __name__ == '__main__':
         elif dataset_name == 'Hexagonos':
             dataset_path = model_cfg.hexagonos_path
             # you can change the test_rang to visualize different images (0~1999)
-            test_range = [i for i in range(args.range[0], args.range[1], 2)]
+            test_range = [i for i in range(args.range[0], args.range[1], 1)]
             gt_path = dataset_path
 
         else:
